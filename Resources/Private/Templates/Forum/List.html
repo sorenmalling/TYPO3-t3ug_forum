@@ -1,0 +1,6 @@
+<f:for each="{forums}" as="forum">
+	<h2>{forum.title}</h2>
+	<p>{forum.description}</p>
+	<p><strong>Antal emner:</strong> <f:count>{forum.topics}</f:count></p>
+	<p><f:link.action controller="Topic" action="List" arguments="{forum : forum}">Forum oversigt</f:link.action></p>
+</f:for>
