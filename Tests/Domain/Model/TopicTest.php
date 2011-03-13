@@ -71,7 +71,7 @@ class Tx_T3ugForum_Domain_Model_TopicTest extends Tx_Extbase_Tests_Unit_BaseTest
 	/**
 	 * @test
 	 */
-	public function getPostsReturnsInitialValueForObjectStorageContainingTx_T3ugForum_Domain_Model_Posts() { 
+	public function getPostsReturnsInitialValueForObjectStorageContainingTx_T3ugForum_Domain_Model_Post() {
 		$newObjectStorage = new Tx_Extbase_Persistence_ObjectStorage();
 		$this->assertEquals(
 			$newObjectStorage,
@@ -82,8 +82,8 @@ class Tx_T3ugForum_Domain_Model_TopicTest extends Tx_Extbase_Tests_Unit_BaseTest
 	/**
 	 * @test
 	 */
-	public function setPostsForObjectStorageContainingTx_T3ugForum_Domain_Model_PostsSetsPosts() { 
-		$post = new Tx_T3ugForum_Domain_Model_Posts();
+	public function setPostsForObjectStorageContainingTx_T3ugForum_Domain_Model_PostSetsPosts() {
+		$post = new Tx_T3ugForum_Domain_Model_Post();
 		$objectStorageHoldingExactlyOnePosts = new Tx_Extbase_Persistence_ObjectStorage();
 		$objectStorageHoldingExactlyOnePosts->attach($post);
 		$this->fixture->setPosts($objectStorageHoldingExactlyOnePosts);
@@ -98,7 +98,7 @@ class Tx_T3ugForum_Domain_Model_TopicTest extends Tx_Extbase_Tests_Unit_BaseTest
 	 * @test
 	 */
 	public function addPostToObjectStorageHoldingPosts() {
-		$post = new Tx_T3ugForum_Domain_Model_Posts();
+		$post = new Tx_T3ugForum_Domain_Model_Post();
 		$objectStorageHoldingExactlyOnePost = new Tx_Extbase_Persistence_ObjectStorage();
 		$objectStorageHoldingExactlyOnePost->attach($post);
 		$this->fixture->addPost($post);
@@ -113,7 +113,7 @@ class Tx_T3ugForum_Domain_Model_TopicTest extends Tx_Extbase_Tests_Unit_BaseTest
 	 * @test
 	 */
 	public function removePostFromObjectStorageHoldingPosts() {
-		$post = new Tx_T3ugForum_Domain_Model_Posts();
+		$post = new Tx_T3ugForum_Domain_Model_Post();
 		$localObjectStorage = new Tx_Extbase_Persistence_ObjectStorage();
 		$localObjectStorage->attach($post);
 		$localObjectStorage->detach($post);

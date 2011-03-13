@@ -3,13 +3,13 @@ if (!defined ('TYPO3_MODE')) {
 	die ('Access denied.');
 }
 
-$TCA['tx_t3ugforum_domain_model_topic'] = array(
-	'ctrl' => $TCA['tx_t3ugforum_domain_model_topic']['ctrl'],
+$TCA['tx_t3ugforum_domain_model_post'] = array(
+	'ctrl' => $TCA['tx_t3ugforum_domain_model_post']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList'	=> 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, subject, posts, forum',
+		'showRecordFieldList'	=> 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, author, bodytext, topic',
 	),
 	'types' => array(
-		'1' => array('showitem'	=> 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, subject, posts, forum,--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access,starttime, endtime'),
+		'1' => array('showitem'	=> 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, author, bodytext, topic,--div--;LLL:EXT:cms/locallang_ttc.xml:tabs.access,starttime, endtime'),
 	),
 	'palettes' => array(
 		'1' => array('showitem'	=> ''),
@@ -37,8 +37,8 @@ $TCA['tx_t3ugforum_domain_model_topic'] = array(
 				'items'			=> array(
 					array('', 0),
 				),
-				'foreign_table' => 'tx_t3ugforum_domain_model_topic',
-				'foreign_table_where' => 'AND tx_t3ugforum_domain_model_topic.uid=###REC_FIELD_l10n_parent### AND tx_t3ugforum_domain_model_topic.sys_language_uid IN (-1,0)',
+				'foreign_table' => 'tx_t3ugforum_domain_model_post',
+				'foreign_table_where' => 'AND tx_t3ugforum_domain_model_post.uid=###REC_FIELD_l10n_parent### AND tx_t3ugforum_domain_model_post.sys_language_uid IN (-1,0)',
 			),
 		),
 		'l10n_diffsource' => array(
@@ -91,56 +91,33 @@ $TCA['tx_t3ugforum_domain_model_topic'] = array(
 				),
 			),
 		),
-		'subject' => array(
-			'exclude'	=> 1,
-			'label'		=> 'LLL:EXT:t3ug_forum/Resources/Private/Language/locallang_db.xml:tx_t3ugforum_domain_model_topic.subject',
+		'bodytext' => array(
+			'exclude'	=> 0,
+			'label'		=> 'LLL:EXT:t3ug_forum/Resources/Private/Language/locallang_db.xml:tx_t3ugforum_domain_model_post.bodytext',
 			'config'	=> array(
-				'type' => 'input',
-				'size' => 30,
+				'type' => 'text',
+				'cols' => 40,
+				'rows' => 15,
 				'eval' => 'trim,required'
 			),
 		),
-		'posts' => array(
+		'topic' => array(
 			'exclude'	=> 0,
-			'label'		=> 'LLL:EXT:t3ug_forum/Resources/Private/Language/locallang_db.xml:tx_t3ugforum_domain_model_topic.posts',
+			'label'		=> 'LLL:EXT:t3ug_forum/Resources/Private/Language/locallang_db.xml:tx_t3ugforum_domain_model_post.topic',
 			'config'	=> array(
 				'type' => 'select',
-				'foreign_table' => 'tx_t3ugforum_domain_model_post',
-				'MM' => 'tx_t3ugforum_topic_post_mm',
-				'size' => 10,
-				'autoSizeMax' => 30,
-				'maxitems' => 9999,
-				'wizards' => array(
-					'_PADDING' => 1,
-					'_VERTICAL' => 1,
-					'edit' => array(
-						'type' => 'popup',
-						'title' => 'Edit',
-						'script' => 'wizard_edit.php',
-						'icon' => 'edit2.gif',
-						'popup_onlyOpenIfSelected' => 1,
-						'JSopenParams' => 'height=350,width=580,status=0,menubar=0,scrollbars=1',
-						),
-					'add' => Array(
-						'type' => 'script',
-						'title' => 'Create new',
-						'icon' => 'add.gif',
-						'params' => array(
-							'table'=>'tx_t3ugforum_domain_model_post',
-							'pid' => '###CURRENT_PID###',
-							'setValue' => 'prepend'
-							),
-						'script' => 'wizard_add.php',
-					),
-				),
+				'foreign_table' => 'tx_t3ugforum_domain_model_topic'
 			),
 		),
-		'forum' => array(
+		'author' => array(
 			'exclude'	=> 0,
-			'label'		=> 'LLL:EXT:t3ug_forum/Resources/Private/Language/locallang_db.xml:tx_t3ugforum_domain_model_topic.forum',
+			'label'		=> 'LLL:EXT:t3ug_forum/Resources/Private/Language/locallang_db.xml:tx_t3ugforum_domain_model_post.author',
 			'config'	=> array(
 				'type' => 'select',
-				'foreign_table' => 'tx_t3ugforum_domain_model_forum',
+				'foreign_table' => 'fe_users',
+				'items' => array(
+					array('--none--', 0),
+				),
 			),
 		),
 	),

@@ -76,9 +76,9 @@ CREATE TABLE tx_t3ugforum_domain_model_topic (
 );
 
 #
-# Table structure for table 'tx_t3ugforum_domain_model_posts'
+# Table structure for table 'tx_t3ugforum_domain_model_post'
 #
-CREATE TABLE tx_t3ugforum_domain_model_posts (
+CREATE TABLE tx_t3ugforum_domain_model_post (
 	uid int(11) unsigned DEFAULT '0' NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
 	
@@ -86,6 +86,7 @@ CREATE TABLE tx_t3ugforum_domain_model_posts (
 	
 	bodytext text NOT NULL,
 	topic int(11) unsigned DEFAULT '0',
+	author varchar(255) DEFAULT '',
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,
@@ -127,9 +128,9 @@ CREATE TABLE tx_t3ugforum_forum_topic_mm (
 );
 
 #
-# Table structure for table 'tx_t3ugforum_topic_posts_mm'
+# Table structure for table 'tx_t3ugforum_topic_post_mm'
 #
-CREATE TABLE tx_t3ugforum_topic_posts_mm (
+CREATE TABLE tx_t3ugforum_topic_post_mm (
 	uid_local int(11) unsigned DEFAULT '0' NOT NULL,
 	uid_foreign int(11) unsigned DEFAULT '0' NOT NULL,
 	sorting int(11) unsigned DEFAULT '0' NOT NULL,

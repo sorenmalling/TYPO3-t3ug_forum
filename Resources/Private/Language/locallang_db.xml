@@ -14,9 +14,9 @@
 			<label index="tx_t3ugforum_domain_model_topic.subject">Subject</label>
 			<label index="tx_t3ugforum_domain_model_topic.posts">Posts</label>
 			<label index="tx_t3ugforum_domain_model_topic.forum">Forum</label>
-			<label index="tx_t3ugforum_domain_model_posts">Posts</label>
-			<label index="tx_t3ugforum_domain_model_posts.bodytext">Bodytext</label>
-			<label index="tx_t3ugforum_domain_model_posts.topic">Topic</label>
+			<label index="tx_t3ugforum_domain_model_post">Posts</label>
+			<label index="tx_t3ugforum_domain_model_post.bodytext">Bodytext</label>
+			<label index="tx_t3ugforum_domain_model_post.topic">Topic</label>
 		</languageKey>
 	</data>
 </T3locallang>

@@ -39,7 +39,7 @@ class Tx_T3ugForum_Domain_Model_Topic extends Tx_Extbase_DomainObject_AbstractEn
 	/**
 	 * posts
 	 *
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_T3ugForum_Domain_Model_Posts> $posts
+	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_T3ugForum_Domain_Model_Post> $posts
 	 * @lazy
 	 */
 	protected $posts;
@@ -50,6 +50,20 @@ class Tx_T3ugForum_Domain_Model_Topic extends Tx_Extbase_DomainObject_AbstractEn
 	 * @var Tx_T3ugForum_Domain_Model_Forum $forum
 	 */
 	protected $forum;
+
+	/**
+	 * First post
+	 *
+	 * @var Tx_T3ugForum_Domain_Model_Post $firstPost
+	 */
+	protected $firstPost;
+
+	/**
+	 * Number of replies
+	 *
+	 * @var int
+	 */
+	protected $replies;
 
 	/**
 	 * The constructor.
@@ -97,7 +111,7 @@ class Tx_T3ugForum_Domain_Model_Topic extends Tx_Extbase_DomainObject_AbstractEn
 	/**
 	 * Setter for posts
 	 *
-	 * @param Tx_Extbase_Persistence_ObjectStorage<Tx_T3ugForum_Domain_Model_Posts> $posts posts
+	 * @param Tx_Extbase_Persistence_ObjectStorage<Tx_T3ugForum_Domain_Model_Post> $posts posts
 	 * @return void
 	 */
 	public function setPosts(Tx_Extbase_Persistence_ObjectStorage $posts) {
@@ -107,7 +121,7 @@ class Tx_T3ugForum_Domain_Model_Topic extends Tx_Extbase_DomainObject_AbstractEn
 	/**
 	 * Getter for posts
 	 *
-	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_T3ugForum_Domain_Model_Posts> posts
+	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_T3ugForum_Domain_Model_Post> posts
 	 */
 	public function getPosts() {
 		return $this->posts;
@@ -116,20 +130,20 @@ class Tx_T3ugForum_Domain_Model_Topic extends Tx_Extbase_DomainObject_AbstractEn
 	/**
 	 * Adds a Posts
 	 *
-	 * @param Tx_T3ugForum_Domain_Model_Posts the Posts to be added
+	 * @param Tx_T3ugForum_Domain_Model_Post the Posts to be added
 	 * @return void
 	 */
-	public function addPost(Tx_T3ugForum_Domain_Model_Posts $post) {
+	public function addPost(Tx_T3ugForum_Domain_Model_Post $post) {
 		$this->posts->attach($post);
 	}
 
 	/**
 	 * Removes a Posts
 	 *
-	 * @param Tx_T3ugForum_Domain_Model_Posts the Posts to be removed
+	 * @param Tx_T3ugForum_Domain_Model_Post the Posts to be removed
 	 * @return void
 	 */
-	public function removePost(Tx_T3ugForum_Domain_Model_Posts $postToRemove) {
+	public function removePost(Tx_T3ugForum_Domain_Model_Post $postToRemove) {
 		$this->posts->detach($postToRemove);
 	}
 
@@ -150,6 +164,25 @@ class Tx_T3ugForum_Domain_Model_Topic extends Tx_Extbase_DomainObject_AbstractEn
 	 */
 	public function getForum() {
 		return $this->forum;
+	}
+
+	/**
+	 * Get first post by topic
+	 *
+	 * @return Tx_T3ugForum_Domain_Model_Post
+	 */
+
+	public function getFirstPost() {
+		return $this->posts->current();
+	}
+
+	/**
+	 * Get number of replies. In test, this return "-1", but a topic can not exists without at least one post and shall return 0
+	 *
+	 * @return int
+	 */
+	public function getReplies() {
+		return (integer) ($this->posts->count() - 1);
 	}
 
 }

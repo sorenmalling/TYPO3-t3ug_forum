@@ -71,11 +71,11 @@ $TCA['tx_t3ugforum_domain_model_topic'] = array(
 	),
 );
 
-t3lib_extMgm::addLLrefForTCAdescr('tx_t3ugforum_domain_model_posts', 'EXT:t3ug_forum/Resources/Private/Language/locallang_csh_tx_t3ugforum_domain_model_posts.xml');
-t3lib_extMgm::allowTableOnStandardPages('tx_t3ugforum_domain_model_posts');
-$TCA['tx_t3ugforum_domain_model_posts'] = array(
+t3lib_extMgm::addLLrefForTCAdescr('tx_t3ugforum_domain_model_post', 'EXT:t3ug_forum/Resources/Private/Language/locallang_csh_tx_t3ugforum_domain_model_post.xml');
+t3lib_extMgm::allowTableOnStandardPages('tx_t3ugforum_domain_model_post');
+$TCA['tx_t3ugforum_domain_model_post'] = array(
 	'ctrl' => array(
-		'title'				=> 'LLL:EXT:t3ug_forum/Resources/Private/Language/locallang_db.xml:tx_t3ugforum_domain_model_posts',
+		'title'				=> 'LLL:EXT:t3ug_forum/Resources/Private/Language/locallang_db.xml:tx_t3ugforum_domain_model_post',
 		'label' 			=> 'bodytext',
 		'tstamp' 			=> 'tstamp',
 		'crdate' 			=> 'crdate',
@@ -92,8 +92,8 @@ $TCA['tx_t3ugforum_domain_model_posts'] = array(
 			'starttime' => 'starttime',
 			'endtime' => 'endtime',
 			),
-		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/Posts.php',
-		'iconfile' 			=> t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_t3ugforum_domain_model_posts.gif'
+		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/Post.php',
+		'iconfile' 			=> t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_t3ugforum_domain_model_post.gif'
 	),
 );
 
